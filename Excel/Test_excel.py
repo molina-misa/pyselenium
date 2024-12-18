@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException
 from Funciones.Funciones import Funciones
-from Funciones.Page_Login import Page_Login
+from Funciones.Page_Login import PageLogin
 
 tg = 0.1
 class BaseTest (unittest.TestCase):
@@ -24,13 +24,13 @@ class BaseTest (unittest.TestCase):
         fe = ExcelFunction(driver)
         f.navegar("https://demoqa.com/text-box",tg)
         ruta = "C://Users//amane//PycharmProjects//curso-selenium//pyselenium//Excel//Datos_ok.xlsx"
-        filas = fe.getRowCount(ruta,"Hoja 1")
+        filas = fe.get_row_count(ruta,"Hoja 1")
 
         for r in range(2,filas+1):
-            nombre = fe.readData(ruta,"Hoja 1",r,1)
-            email = fe.readData(ruta, "Hoja 1", r, 2)
-            dir1 = fe.readData(ruta, "Hoja 1", r, 3)
-            dir2 = fe.readData(ruta, "Hoja 1", r, 4)
+            nombre = fe.read_data(ruta,"Hoja 1",r,1)
+            email = fe.read_data(ruta, "Hoja 1", r, 2)
+            dir1 = fe.read_data(ruta, "Hoja 1", r, 3)
+            dir2 = fe.read_data(ruta, "Hoja 1", r, 4)
 
             f.text_mix_validate("id","userName",nombre,tg)
             f.text_mix_validate("id", "userEmail", email, tg)
@@ -41,10 +41,10 @@ class BaseTest (unittest.TestCase):
             e = f.exists("id","name",tg)
             if e == "Existe":
                 print("El elemento se inserto correctamente")
-                fe.writeData(ruta,"Hoja 1",r,5,"Insertado")
+                fe.write_data(ruta,"Hoja 1",r,5,"Insertado")
             else:
                 print("No se inserto")
-                fe.writeData(ruta,"Hoja 1",r,5,"Error")
+                fe.write_data(ruta,"Hoja 1",r,5,"Error")
 
 
 

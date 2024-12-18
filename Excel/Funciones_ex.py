@@ -7,25 +7,29 @@ class ExcelFunction:
     def __init__(self, driver):
         self.driver = driver
 
-    def getRowCount(file,path,sheetName):
-        Workbook = openpyxl.load_workbook(path)
-        sheet = Workbook[sheetName]
+    @staticmethod
+    def get_row_count(path,sheet_name):
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook[sheet_name]
         return sheet.max_row
 
-    def getColumnCount(file,sheetName):
-        Workbook = openpyxl.load_workbook(file)
-        sheet = Workbook[sheetName]
+    @staticmethod
+    def get_column_count(path,sheet_name):
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook[sheet_name]
         return sheet.max_column
 
-    def readData(file,path,sheet_name,row_num,colum_num):
-        Workbook = openpyxl.load_workbook(path)
-        sheet = Workbook[sheet_name]
+    @staticmethod
+    def read_data(path,sheet_name,row_num,colum_num):
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook[sheet_name]
         return sheet.cell(row = row_num, column = colum_num).value
 
-    def writeData(file,path,sheet_name,row_num,colum_num,data):
-        Workbook = openpyxl.load_workbook(path)
-        sheet = Workbook[sheet_name]
+    @staticmethod
+    def write_data(path,sheet_name,row_num,colum_num,data):
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook[sheet_name]
         sheet.cell(row = row_num, column = colum_num).value = data
-        Workbook.save(path)
+        workbook.save(path)
 
     
